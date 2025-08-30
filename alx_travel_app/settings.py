@@ -13,6 +13,10 @@ from decouple import config
 
 from pathlib import Path
 
+from .celery import app as celery_app
+__all__ = ("celery_app",)
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +47,9 @@ INSTALLED_APPS = [
     'drf_yasg',                # For Swagger documentation
     'listings',
 ]
+
+CELERY_BROKER_URL = "amqp://localhost"
+CELERY_RESULT_BACKEND = "rpc://"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
